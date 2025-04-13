@@ -60,23 +60,26 @@ function About() {
 
           <Grid size={16} sx={{ mt: '30px' }}>
 
+          <Box textAlign="right">
+  <Button
+    component={Link}
+    to="#"
+    sx={{
+      mt: 2,
+   
+      backgroundColor: 'black',
+      color: 'white',
+      width: '270px',
+      height: '50px',
+      borderRadius: '50px',
+      fontSize: '1.25rem', // ทำให้มีขนาดเท่ากับ h6
+      fontWeight: '500'
+    }}
+  >
+    Download my resume
+  </Button>
+</Box>
 
-            <Typography variant="body1" align="right" >
-              <Button
-                component={Link}
-                to="#"
-                sx={{
-                  mt: 2,
-                  backgroundColor: 'black',
-                  color: 'white',
-                  width: '270px',
-                  height: '50px',
-                  borderRadius: '50px'
-                }}
-              >
-                <Typography variant="h6">Download my resume</Typography>
-              </Button>
-            </Typography>
             <br /><br />
             <hr />
           </Grid>
