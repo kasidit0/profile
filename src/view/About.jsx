@@ -50,7 +50,7 @@ function About() {
               นอกจากนี้
               ผมยังมีงานอดิเรกที่ช่วยเพิ่มความคิดสร้างสรรค์ เช่น เล่นเกม ดูหนัง ออกแบบกราฟิก และ การทำเว็ปไซต์ ซึ่งช่วยให้ผมผ่อนคลายและเปิดโลกทัศน์ใหม่ ๆ
               <strong>
-                ผมหวังว่าจะได้นำความรู้ที่มีไปใช้ในงานจริงและสามารถพัฒนาผลิตภัณฑ์หรือบริการที่สามารถตอบโจทย์ความต้องการของผู้คนได้
+                ไผมหวังว่าจะได้นำความรู้ที่มีไปใช้ในงานจริงและสามารถพัฒนาผลิตภัณฑ์หรือบริการที่สามารถตอบโจทย์ความต้องการของผู้คนได้
               </strong>
 
 
@@ -60,25 +60,24 @@ function About() {
 
           <Grid size={16} sx={{ mt: '30px' }}>
 
-          <Box textAlign="right">
-  <Button
-    component={Link}
-    to="#"
-    sx={{
-      mt: 2,
-   
-      backgroundColor: 'black',
-      color: 'white',
-      width: '270px',
-      height: '50px',
-      borderRadius: '50px',
-      fontSize: '1.25rem', // ทำให้มีขนาดเท่ากับ h6
-      fontWeight: '500'
-    }}
-  >
-    Download my resume
-  </Button>
-</Box>
+            <Box textAlign="right">
+              <Button
+                component={Link}
+                to="#"
+                sx={{
+                  mt: 2,
+                  backgroundColor: 'black',
+                  color: 'white',
+                  width: '270px',
+                  height: '50px',
+                  borderRadius: '50px',
+                  fontSize: '1.25rem', // ทำให้มีขนาดเท่ากับ h6
+                  fontWeight: '500'
+                }}
+              >
+                Download my resume
+              </Button>
+            </Box>
 
             <br /><br />
             <hr />
@@ -110,8 +109,8 @@ function About() {
               My Capablities
 
             </Typography>
-            
-            
+
+
             <br />
           </Grid>
 
@@ -120,65 +119,65 @@ function About() {
           <Grid size={10} sx={{}}>
 
             {/* Box1 */}
-            <Box sx={{ display: 'flex',  gap: 2 ,mt:'50px',mr:'25%', justifyContent : 'end'}}>
-            <Typography variant="body1" align="center"
-              sx={{
-                color: 'black',width: '100px',height: '50px',
-                borderRadius: '50px',border: '2px solid black',
-                display: 'flex',alignItems: 'center',justifyContent: 'center'
-              }}>
-              JavaScript
-            </Typography>
-            <Typography variant="body1" align="right"
-              sx={{
-                color: 'black',width: '100px',height: '50px',
-                borderRadius: '50px',border: '2px solid black',
-                display: 'flex',alignItems: 'center',justifyContent: 'center'
-              }}>
-              HTML
-            </Typography>
+            <Box sx={{ display: 'flex', gap: 2, mt: '50px', mr: '25%', justifyContent: 'end' }}>
+              <Typography variant="body1" align="center"
+                sx={{
+                  color: 'black', width: '100px', height: '50px',
+                  borderRadius: '50px', border: '2px solid black',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center'
+                }}>
+                JavaScript
+              </Typography>
+              <Typography variant="body1" align="right"
+                sx={{
+                  color: 'black', width: '100px', height: '50px',
+                  borderRadius: '50px', border: '2px solid black',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center'
+                }}>
+                HTML
+              </Typography>
 
-            <Typography
-              variant="body1" align="right"
-              sx={{
-                color: 'black',width: '100px',height: '50px',
-                borderRadius: '50px',border: '2px solid black',
-                display: 'flex',alignItems: 'center',justifyContent: 'center'
-              }}
-            >
-              CSS
-            </Typography>
+              <Typography
+                variant="body1" align="right"
+                sx={{
+                  color: 'black', width: '100px', height: '50px',
+                  borderRadius: '50px', border: '2px solid black',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center'
+                }}
+              >
+                CSS
+              </Typography>
             </Box>
-              
-            {/* Box2 */}
-            <Box sx={{ display: 'flex', gap: 2 ,mt:'30px',mr:'25%', justifyContent : 'end'}}>
-            <Typography variant="body1" align="right"
-              sx={{
-                color: 'black',width: '100px',height: '50px',
-                borderRadius: '50px',border: '2px solid black',
-                display: 'flex',alignItems: 'center',justifyContent: 'center'
-              }}>
-              Phython
-            </Typography>
-            <Typography variant="body1" align="right"
-              sx={{
-                color: 'black',width: '100px',height: '50px',
-                borderRadius: '50px',border: '2px solid black',
-                display: 'flex',alignItems: 'center',justifyContent: 'center'
-              }}>
-              Java
-            </Typography>
 
-            <Typography
-              variant="body1" align="right"
-              sx={{
-                color: 'black',width: '100px',height: '50px',
-                borderRadius: '50px',border: '2px solid black',
-                display: 'flex',alignItems: 'center',justifyContent: 'center'
-              }}
-            >
-              C/C++
-            </Typography>
+            {/* Box2 */}
+            <Box sx={{ display: 'flex', gap: 2, mt: '30px', mr: '25%', justifyContent: 'end' }}>
+              <Typography variant="body1" align="right"
+                sx={{
+                  color: 'black', width: '100px', height: '50px',
+                  borderRadius: '50px', border: '2px solid black',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center'
+                }}>
+                Phython
+              </Typography>
+              <Typography variant="body1" align="right"
+                sx={{
+                  color: 'black', width: '100px', height: '50px',
+                  borderRadius: '50px', border: '2px solid black',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center'
+                }}>
+                Java
+              </Typography>
+
+              <Typography
+                variant="body1" align="right"
+                sx={{
+                  color: 'black', width: '100px', height: '50px',
+                  borderRadius: '50px', border: '2px solid black',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center'
+                }}
+              >
+                C/C++
+              </Typography>
             </Box>
 
 
@@ -192,7 +191,9 @@ function About() {
           </Grid>
 
         </Grid>
-
+        <Box>
+                {/* fakeBox */}
+        </Box>
       </Box>
     </>
   )
