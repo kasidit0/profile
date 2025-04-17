@@ -48,9 +48,9 @@ function About() {
               ภาษาโปรแกรมที่ใช้งานบ่อยคือ <strong>JavaScript, HTML, Python, และ C </strong>ซึ่งช่วยให้ผมสามารถพัฒนาทักษะและสร้างโปรเจกต์ต่าง ๆ ได้ตามที่สนใจ
               <br />
               นอกจากนี้
-              ผมยังมีงานอดิเรกที่ช่วยเพิ่มความคิดสร้างสรรค์ เช่น เล่นเกม ดูหนัง ออกแบบกราฟิก และ การทำเว็ปไซต์ ซึ่งช่วยให้ผมผ่อนคลายและเปิดโลกทัศน์ใหม่ ๆ
+              ผมยังมีงานอดิเรกที่ช่วยเพิ่มความคิดสร้างสรรค์ เช่น เล่นเกม ดูหนัง ออกแบบกราฟิก และ การทำเว็บไซต์ ซึ่งช่วยให้ผมผ่อนคลายและเปิดโลกทัศน์ใหม่ ๆ
               <strong>
-                ไผมหวังว่าจะได้นำความรู้ที่มีไปใช้ในงานจริงและสามารถพัฒนาผลิตภัณฑ์หรือบริการที่สามารถตอบโจทย์ความต้องการของผู้คนได้
+                ผมหวังว่าจะได้นำความรู้ที่มีไปใช้ในงานจริงและสามารถพัฒนาผลิตภัณฑ์หรือบริการที่สามารถตอบโจทย์ความต้องการของผู้คนได้
               </strong>
 
 
@@ -159,14 +159,7 @@ function About() {
                 }}>
                 Phython
               </Typography>
-              <Typography variant="body1" align="right"
-                sx={{
-                  color: 'black', width: '100px', height: '50px',
-                  borderRadius: '50px', border: '2px solid black',
-                  display: 'flex', alignItems: 'center', justifyContent: 'center'
-                }}>
-                Java
-              </Typography>
+     
 
               <Typography
                 variant="body1" align="right"
@@ -177,6 +170,17 @@ function About() {
                 }}
               >
                 C/C++
+              </Typography>
+
+              <Typography
+                variant="body1" align="right"
+                sx={{
+                  color: 'black', width: '100px', height: '50px',
+                  borderRadius: '50px', border: '2px solid black',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center'
+                }}
+              >
+                Swift
               </Typography>
             </Box>
 
