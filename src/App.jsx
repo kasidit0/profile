@@ -7,6 +7,8 @@ import Contact from './view/Contact'
 import A from './view/A'
 import About from './view/About'
 import Play from './view/Play'
+import Main from './view/Main'
+import JobExp from './view/JobExp'
 
 
 function App() {
@@ -16,9 +18,11 @@ function App() {
       <CssBaseline />  
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/main" element={<Main />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/a" element={<A />} />
         <Route path="/about" element={<About />} />
+        <Route path="/jobexp" element={<JobExp />} />
         <Route path="/play" element={<Play />} />
 
       </Routes>

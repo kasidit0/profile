@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 
 function A() {
   return (
-    <Box>
-      <AppBar position="static" sx={{ backgroundColor: 'black', boxShadow: 3 }}>
+    <Box sx={{ flexGrow: 1 }}>
+      <AppBar position="fixed" sx={{ backgroundColor: 'black', boxShadow: 3, zIndex: 1100 }}>
         <Toolbar>
           <Typography variant="h4" component="div" sx={{ flexGrow: 1, color: 'white' }}>
             Kasidit Somphot
@@ -39,6 +39,21 @@ function A() {
             }}
           >
             AboutMe
+          </Typography>
+
+          <Typography 
+            variant="h6" 
+            component={Link} 
+            to="/jobexp" 
+            sx={{ 
+              mr: 3, 
+              fontWeight: 300, 
+              color: 'white', 
+              textDecoration: 'none', 
+              '&:hover': { color: '#ff6f00', textDecoration: 'underline' } 
+            }}
+          >
+            Experience
           </Typography>
 
           <Typography 

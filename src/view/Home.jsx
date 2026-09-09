@@ -13,14 +13,16 @@ function Play() {
       {/* AppBar ด้านบน */}
       <A />
 
-      {/* เนื้อหาหลัก */}
-      <Grid container spacing={0} columns={16}>
+      <Box sx={{ backgroundColor: '#fafafa', minHeight: '100vh', width: '100%' }}>
+        {/* เนื้อหาหลัก */}
+        <Grid container spacing={0} columns={16}>
         <Grid size={8} sx={{}}>
           <Box
             sx={{
               width: "800px",
-              mt: "120px", // ลดลงจาก 286px เพราะมี AppBar แล้ว
-              ml: "10%",
+              mt: "290px", // ลดลงจาก 286px เพราะมี AppBar แล้ว
+              ml: "20%",
+              mr: "20%",
               display: "flex",
               flexDirection: "column",
               justifyContent: "space-between",
@@ -32,10 +34,13 @@ function Play() {
               Kasidit
             </Typography>
 
-            <Typography align="right">
-              สวัสดี ผมชื่อ กษิดิศ ผมเป็นนักศึกษาจากมหาวิทยาลัยเอเชียอาคเนย์ <br />
-              ปัจจุบันกำลังศึกษาอยู่สาขาวิศวกรรมคอมพิวเตอร์
-            </Typography>
+            <Box sx={{ mt: "20px", mb: "20px" }}>
+              <Typography align="right">
+                สวัสดี ผมชื่อ กษิดิศ สมพจน์ จบการศึกษาจากมหาวิทยาลัยเอเชียอาคเนย์ <br />
+                กำลังมองหางานด้าน IT Automation IoT และ Robotics อยู่ครับ
+              </Typography>
+
+            </Box>
 
             <Box>
               <Button
@@ -78,21 +83,21 @@ function Play() {
 
         {/* AVATAR*/}
         <Grid size={8} sx={{}}>
-          <Box             
-          sx={{
-             
-              mt: "85px", 
+          <Box
+            sx={{
+
+              mt: "130px",
               display: "flex",
               justifyContent: "space-between",
               ml: "15%",
               padding: "20px",
-              
+
             }} >
             <Avatar alt="profile" src={profileImg}
               sx={{
                 width: 500,
                 height: 700,
-                borderRadius: 2, 
+                borderRadius: 2,
                 boxShadow: 3
               }} />
           </Box>
@@ -100,6 +105,7 @@ function Play() {
 
 
       </Grid>
+      </Box>
 
     </>
   )

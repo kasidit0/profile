@@ -7,16 +7,15 @@ import LinkedInIcon from '@mui/icons-material/LinkedIn';
 
 
 
-import { Link } from 'react-router-dom';
 import A from './A'; // import AppBar
-import profileImg from './../assets/profileImg.jpg'
+
 
 
 
 
 function Play() {
   return (
-    <>
+    <Box sx={{ backgroundColor: '#fafafa', minHeight: '100vh', width: '100%' }}>
       {/* AppBar ด้านบน */}
       <A />
 
@@ -176,8 +175,7 @@ function Play() {
 
 
       </Grid>
-
-    </>
+    </Box>
   )
 }
 

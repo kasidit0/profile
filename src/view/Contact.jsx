@@ -7,14 +7,13 @@ import LinkedInIcon from '@mui/icons-material/LinkedIn';
 
 
 
-import { Link } from 'react-router-dom';
 import A from './A'; // import AppBar
-import profileImg from './../assets/profileImg.jpg'
+
 function Contact() {
   return (
-    <>
+    <Box sx={{ backgroundColor: '#fafafa', minHeight: '100vh', width: '100%' }}>
       {/* AppBar ด้านบน */}
-      <A />
+      {/* <A /> */}
 
       {/* 1 */}
       <Grid container spacing={0} columns={16}>
@@ -28,7 +27,7 @@ function Contact() {
               flexDirection: "column",
               justifyContent: "space-between",
               padding: "20px",
-              
+
             }}
           >
             <Typography variant="h1" align="left" sx={{
@@ -38,7 +37,7 @@ function Contact() {
               Let's Connect
             </Typography>
 
-            <Typography sx={{ ml: 2,mt:2 }}>
+            <Typography sx={{ ml: 2, mt: 2 }}>
               Say Hello at KasiditSomphot@gmail.com <br />
               for moor information, here's my resume
             </Typography>
@@ -47,7 +46,7 @@ function Contact() {
 
 
             {/* btn */}
-            <Box sx={{ display: 'flex', justifyContent: 'flex-start', mt: 1 ,ml: 1}}>
+            <Box sx={{ display: 'flex', justifyContent: 'flex-start', mt: 1, ml: 1 }}>
               {/* github */}
               <IconButton
                 component="a"
@@ -60,7 +59,7 @@ function Contact() {
                   color: 'white',
                   width: '50px',
                   height: '50px',
-                  borderRadius: '50px',display: 'flex', justifyContent: 'center'
+                  borderRadius: '50px', display: 'flex', justifyContent: 'center'
                 }}
               >
                 <GitHubIcon />
@@ -78,7 +77,7 @@ function Contact() {
                   color: 'white',
                   width: '50px',
                   height: '50px',
-                  borderRadius: '50px',display: 'flex', justifyContent: 'center'
+                  borderRadius: '50px', display: 'flex', justifyContent: 'center'
                 }}
               >
                 <LinkedInIcon />
@@ -96,7 +95,7 @@ function Contact() {
                   color: 'white',
                   width: '50px',
                   height: '50px',
-                  borderRadius: '50px',display: 'flex', justifyContent: 'center'
+                  borderRadius: '50px', display: 'flex', justifyContent: 'center'
                 }}
               >
                 <FacebookOutlinedIcon />
@@ -114,14 +113,14 @@ function Contact() {
                   color: 'white',
                   width: '50px',
                   height: '50px',
-                  borderRadius: '50px',display: 'flex', justifyContent: 'center'
+                  borderRadius: '50px', display: 'flex', justifyContent: 'center'
                 }}
               >
                 <InstagramIcon />
               </IconButton>
             </Box>
 
-           
+
 
           </Box>
 
@@ -131,18 +130,18 @@ function Contact() {
 
         {/* 2*/}
         <Grid size={8} sx={{}}>
-        <Box
+          <Box
             sx={{
               ml: '10%',
               mt: '120px',
-             
+
               color: 'white',
               padding: '40px',
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'flex-start',
-              
-              
+
+
             }}
           >
             <Box sx={{ backgroundColor: 'black', padding: '20px', borderRadius: '20px' }}>
@@ -173,7 +172,7 @@ function Contact() {
 
       </Grid>
 
-    </>
+    </Box>
   )
 
 }

@@ -4,8 +4,8 @@ import { Box, Typography, Button, IconButton, Grid } from '@mui/material'
 import { Link } from 'react-router-dom';
 function About() {
   return (
-    <>
-      <A />
+    <Box sx={{ backgroundColor: '#fafafa', minHeight: '100vh', width: '100%' }}>
+      {/* <A /> */}
 
       <Box
         sx={{
@@ -42,8 +42,9 @@ function About() {
 
           <Grid size={10} sx={{}}>
             <Typography variant="body1" align="left">
-              สวัสดีครับ ผมชื่อ <strong>กษิดิศ สมพจน์</strong> ชื่อเล่นว่า<strong>กานต์</strong> ปัจจุบันกำลังศึกษาอยู่ที่ มหาวิทยาลัยเอเชียอาคเนย์ ชั้นปีที่ 2
-              ผมสนใจด้านเทคโนโลยีและการเขียนโปรแกรมเป็นพิเศษ โดยเฉพาะวิชาที่เกี่ยวข้องกับการพัฒนาและออกแบบระบบ เช่น <strong>  Microcontroller, Database, Coding, และ Data Structure</strong>
+              สวัสดีครับ ผมชื่อ <strong>กษิดิศ สมพจน์</strong> ชื่อเล่นว่า<strong>กานต์</strong> ปัจจุบันผมเป็นนักศึกษาจบใหม่จากมหาวิทยาลัยเอเชียอาคเนย์ สาขาวิศวกรรมคอมพิวเตอร์ <br />
+
+              ผมสนใจด้านเทคโนโลยีแเป็นพิเศษ โดยเฉพาะด้านที่เกี่ยวข้องกับการพัฒนาและออกแบบระบบ เช่น <strong>  Microcontroller, Robotics  IoT Automation รวมไปถึง IT support และอื่นๆที่เกี่ยวข้อง </strong>
               <br />
               ภาษาโปรแกรมที่ใช้งานบ่อยคือ <strong>JavaScript, HTML, Python, และ C </strong>ซึ่งช่วยให้ผมสามารถพัฒนาทักษะและสร้างโปรเจกต์ต่าง ๆ ได้ตามที่สนใจ
               <br />
@@ -159,7 +160,7 @@ function About() {
                 }}>
                 Phython
               </Typography>
-     
+
 
               <Typography
                 variant="body1" align="right"
@@ -196,10 +197,10 @@ function About() {
 
         </Grid>
         <Box>
-                {/* fakeBox */}
+          {/* fakeBox */}
         </Box>
       </Box>
-    </>
+    </Box>
   )
 }
 
