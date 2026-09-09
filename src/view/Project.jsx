@@ -52,7 +52,6 @@ const projectSlides = [
 function Project() {
     const [openImageModal, setOpenImageModal] = useState(false);
     const [currentSlide, setCurrentSlide] = useState(0);
-    const [activeTab, setActiveTab] = useState(0);
     const touchStartX = useRef(0);
     const touchEndX = useRef(0);
 
@@ -81,147 +80,151 @@ function Project() {
         }
     };
 
-    const handleTabChange = (event, newValue) => {
-        setActiveTab(newValue);
-    };
-
     return (
         <>
             {/* Top Navigation Bar is now in Main.jsx */}
 
             <Box
                 sx={{
-                    width: "80%",
-                    mt: "120px",
-                    ml: "10%",
-                    display: "flex",
-                    flexDirection: "column",
-                    padding: "20px",
+                    backgroundColor: '#fafafa',
+                    minHeight: '100vh',
+                    width: '100%',
+                    py: { xs: 8, md: 12 },
                 }}
             >
-                <Box sx={{ width: '100%' }}>
-                    {/* Header Section */}
-                    <Box sx={{ mb: 4 }}>
-                        <Typography
-                            variant="h1"
-                            align="left"
-                            sx={{
-                                width: "100%",
-                                color: 'black'
-                            }}
-                        >
-                            Graduation Project
-                        </Typography>
-                        <hr />
-                        <br />
-                    </Box>
+                <Box
+                    sx={{
+                        width: { xs: '92%', sm: '88%', md: '80%' },
+                        maxWidth: '1200px',
+                        mx: 'auto',
+                        px: { xs: 1, sm: 2 },
+                        display: 'flex',
+                        flexDirection: 'column',
+                    }}
+                >
+                    <Box sx={{ width: '100%' }}>
+                        {/* Header Section */}
+                        <Box sx={{ mb: 4 }}>
+                            <Typography
+                                variant="h2"
+                                align="left"
+                                sx={{
+                                    fontSize: { xs: '2rem', sm: '2.5rem', md: '3.2rem' },
+                                    fontWeight: 400,
+                                    color: 'black'
+                                }}
+                            >
+                                Graduation Project
+                            </Typography>
+                            <Box sx={{ width: '100%', height: '1px', backgroundColor: '#ccc', mt: 1.5, mb: 3 }} />
+                        </Box>
 
-                    {/* Centered Image with View More Button */}
-                    <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', mb: 5 }}>
-                        <Box
-                            component="img"
-                            src="/project.jpg"
-                            alt="Project Hero Banner"
-                            sx={{
-                                width: '100%',
-                                maxWidth: '900px',
-                                height: 'auto',
-                                borderRadius: '25px',
-                                objectFit: 'cover',
-                                boxShadow: '0px 10px 30px rgba(0,0,0,0.1)',
-                                cursor: 'pointer',
-                                transition: 'transform 0.3s ease, box-shadow 0.3s ease',
-                                '&:hover': {
-                                    transform: 'scale(1.01)',
-                                    boxShadow: '0px 15px 35px rgba(0,0,0,0.15)'
-                                }
-                            }}
-                            onClick={() => {
-                                setCurrentSlide(0);
-                                setOpenImageModal(true);
-                            }}
-                        />
-
-                        {/* ปุ่มดูข้อมูลเพิ่มเติม ใต้รูป project.jpg */}
-                        <Box sx={{ width: '100%', maxWidth: '900px', display: 'flex', justifyContent: 'flex-end' }}>
-                            <Button
-                                variant="contained"
+                        {/* Centered Image with View More Button */}
+                        <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', mb: 5 }}>
+                            <Box
+                                component="img"
+                                src="/project.jpg"
+                                alt="Project Hero Banner"
+                                sx={{
+                                    width: '100%',
+                                    maxWidth: '900px',
+                                    height: 'auto',
+                                    borderRadius: '25px',
+                                    objectFit: 'cover',
+                                    boxShadow: '0px 10px 30px rgba(0,0,0,0.1)',
+                                    cursor: 'pointer',
+                                    transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+                                    '&:hover': {
+                                        transform: 'scale(1.01)',
+                                        boxShadow: '0px 15px 35px rgba(0,0,0,0.15)'
+                                    }
+                                }}
                                 onClick={() => {
                                     setCurrentSlide(0);
                                     setOpenImageModal(true);
                                 }}
-                                startIcon={<ZoomInIcon />}
+                            />
+
+                            {/* ปุ่มดูข้อมูลเพิ่มเติม ใต้รูป project.jpg */}
+                            <Box sx={{ width: '100%', maxWidth: '900px', display: 'flex', justifyContent: 'flex-end' }}>
+                                <Button
+                                    variant="contained"
+                                    onClick={() => {
+                                        setCurrentSlide(0);
+                                        setOpenImageModal(true);
+                                    }}
+                                    startIcon={<ZoomInIcon />}
+                                    sx={{
+                                        mt: 2.5,
+                                        backgroundColor: 'black',
+                                        color: 'white',
+                                        borderRadius: '50px',
+                                        px: 3.5,
+                                        py: 1.2,
+                                        textTransform: 'none',
+                                        fontSize: '0.95rem',
+                                        fontWeight: 500,
+                                        boxShadow: '0 4px 15px rgba(0,0,0,0.15)',
+                                        '&:hover': {
+                                            backgroundColor: '#222',
+                                            transform: 'translateY(-2px)',
+                                            boxShadow: '0 6px 20px rgba(0,0,0,0.2)'
+                                        },
+                                        transition: 'all 0.25s ease'
+                                    }}
+                                >
+                                    ดูข้อมูลเพิ่มเติม
+                                </Button>
+                            </Box>
+                        </Box>
+
+                        {/* Project Details & Information (อยู่ใต้รูป) */}
+                        <Box sx={{ maxWidth: '900px', mx: 'auto', mb: 8, textAlign: 'center' }}>
+
+
+                            {/* Project Title */}
+                            <Typography
+                                variant="h3"
                                 sx={{
-                                    mt: 2.5,
-                                    backgroundColor: 'black',
-                                    color: 'white',
-                                    borderRadius: '50px',
-                                    px: 3.5,
-                                    py: 1.2,
-                                    textTransform: 'none',
-                                    fontSize: '0.95rem',
-                                    fontWeight: 500,
-                                    boxShadow: '0 4px 15px rgba(0,0,0,0.15)',
-                                    '&:hover': {
-                                        backgroundColor: '#222',
-                                        transform: 'translateY(-2px)',
-                                        boxShadow: '0 6px 20px rgba(0,0,0,0.2)'
-                                    },
-                                    transition: 'all 0.25s ease'
+                                    fontWeight: 400,
+                                    color: '#111',
+                                    fontSize: { xs: '1.6rem', sm: '2.2rem', md: '2.5rem' },
+                                    lineHeight: 1.3,
+                                    mb: 2
                                 }}
                             >
-                                ดูข้อมูลเพิ่มเติม
-                            </Button>
+                                ระบบตรวจจับการล้มด้วยอุปกรณ์สวมใส่
+                            </Typography>
+
+
+
+                            <Typography
+                                variant="body1"
+                                sx={{
+                                    color: '#444',
+                                    lineHeight: 1.8,
+                                    fontSize: '1.05rem',
+                                    mb: 4,
+                                    textAlign: 'justify',
+                                    textIndent: '2.5rem'
+                                }}
+                            >
+                                ระบบตรวจจับการล้ม ทำงานโดยการตรวจวัดและวิเคราะห์การเคลื่อนไหวของร่างกายพร้อมกัน 3 จุด
+                                ได้แก่ บริเวณหน้าอก เอว และต้นขา ผ่านเซนเซอร์วัดความเร่งและการหมุนตัว
+                                ตัวระบบจะนำระยะความเคลื่อนไหวสัมพัทธ์ระหว่างแต่ละตำแหน่งมาคำนวณหาค่าเฉลี่ยและความแปรปรวนทางสถิติ
+                                เพื่อกำหนดเป็นเส้นแบ่งเกณฑ์การเคลื่อนไหวที่ผิดปกติพร้อมทั้งใช้กลไกการตัดสินใจแบบเสียงส่วนใหญ่สองในสามจุดร่วมกับการผสานสัญญาณเซนเซอร์
+                                เพื่อช่วยคัดกรองท่าทางในชีวิตประจำวันทั่วไปออกและยืนยันการหกล้มได้อย่างแม่นยำโดยไม่แจ้งเตือนผิดพลาด และส่งแจ้งเตือนไปยังผู้ดูแล
+                            </Typography>
+
+
+
+
                         </Box>
+
+
+                        <Box sx={{ width: '100%', height: '1px', backgroundColor: '#e0e0e0', mt: 4 }} />
                     </Box>
-
-                    {/* Project Details & Information (อยู่ใต้รูป) */}
-                    <Box sx={{ maxWidth: '900px', mx: 'auto', mb: 8, textAlign: 'center' }}>
-
-
-                        {/* Project Title */}
-                        <Typography
-                            variant="h3"
-                            sx={{
-                                fontWeight: 700,
-                                color: '#111',
-                                fontSize: { xs: '1.6rem', sm: '2.2rem', md: '2.5rem' },
-                                lineHeight: 1.3,
-                                mb: 2
-                            }}
-                        >
-                            ระบบตรวจจับการล้มด้วยอุปกรณ์สวมใส่
-                        </Typography>
-
-
-
-                        <Typography
-                            variant="body1"
-                            sx={{
-                                color: '#444',
-                                lineHeight: 1.8,
-                                fontSize: '1.05rem',
-                                mb: 4,
-                                textAlign: 'justify',
-                                textIndent: '2.5rem'
-                            }}
-                        >
-                            ระบบตรวจจับการล้ม ทำงานโดยการตรวจวัดและวิเคราะห์การเคลื่อนไหวของร่างกายพร้อมกัน 3 จุด
-                            ได้แก่ บริเวณหน้าอก เอว และต้นขา ผ่านเซนเซอร์วัดความเร่งและการหมุนตัว
-                            ตัวระบบจะนำระยะความเคลื่อนไหวสัมพัทธ์ระหว่างแต่ละตำแหน่งมาคำนวณหาค่าเฉลี่ยและความแปรปรวนทางสถิติ
-                            เพื่อกำหนดเป็นเส้นแบ่งเกณฑ์การเคลื่อนไหวที่ผิดปกติพร้อมทั้งใช้กลไกการตัดสินใจแบบเสียงส่วนใหญ่สองในสามจุดร่วมกับการผสานสัญญาณเซนเซอร์
-                            เพื่อช่วยคัดกรองท่าทางในชีวิตประจำวันทั่วไปออกและยืนยันการหกล้มได้อย่างแม่นยำโดยไม่แจ้งเตือนผิดพลาด และส่งแจ้งเตือนไปยังผู้ดูแล
-                        </Typography>
-
-
-
-
-                    </Box>
-
-
-                    <hr />
                 </Box>
-
             </Box>
 
             {/* Full-Screen Image Lightbox Modal with Slide */}

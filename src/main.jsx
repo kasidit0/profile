@@ -1,7 +1,6 @@
 import { createRoot } from 'react-dom/client'
 import App from './App.jsx'
-import {createTheme, ThemeProvider} from '@mui/material/styles'
-
+import { createTheme, ThemeProvider } from '@mui/material/styles'
 
 const theme = createTheme({
   palette: {
@@ -15,7 +14,6 @@ const theme = createTheme({
     ].join(','),
   }
 });
-
 
 createRoot(document.getElementById('root')).render(
   <ThemeProvider theme={theme}>

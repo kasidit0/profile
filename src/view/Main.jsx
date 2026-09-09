@@ -5,19 +5,27 @@ import About from './About';
 import JobExp from './JobExp';
 import Contact from './Contact';
 import Project from './Project';
-
 import A from './A';
 
 function Main() {
   return (
-    <Box sx={{ backgroundColor: '#fafafa', minHeight: '100vh', width: '100%' }}>
+    <Box sx={{ backgroundColor: '#fafafa', minHeight: '100vh', width: '100%', overflowX: 'hidden' }}>
       <A />
-      <Home />
-      <About />
-      <JobExp />
-      <Project />
-      <Contact />
-
+      <Box id="home" sx={{ scrollMarginTop: '70px' }}>
+        <Home />
+      </Box>
+      <Box id="about" sx={{ scrollMarginTop: '70px' }}>
+        <About />
+      </Box>
+      <Box id="jobexp" sx={{ scrollMarginTop: '70px' }}>
+        <JobExp />
+      </Box>
+      <Box id="project" sx={{ scrollMarginTop: '70px' }}>
+        <Project />
+      </Box>
+      <Box id="contact" sx={{ scrollMarginTop: '70px' }}>
+        <Contact />
+      </Box>
     </Box>
   );
 }

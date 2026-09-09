@@ -1,32 +1,66 @@
 import React, { useState } from 'react';
-import { AppBar, Toolbar, Box, Typography, IconButton, Drawer, List, ListItem, ListItemText } from '@mui/material';
+import {
+  AppBar,
+  Toolbar,
+  Box,
+  Typography,
+  IconButton,
+  Drawer,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemText,
+} from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
-import { Link } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 function A() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
 
   const navItems = [
-    { label: 'Home', path: '/' },
-    { label: 'AboutMe', path: '/about' },
-    { label: 'Experience', path: '/jobexp' },
-    { label: 'Project', path: '/project' },
-    { label: 'Contact', path: '/contact' }
+    { label: 'Home', path: '/', sectionId: 'home' },
+    { label: 'AboutMe', path: '/about', sectionId: 'about' },
+    { label: 'Experience', path: '/jobexp', sectionId: 'jobexp' },
+    { label: 'Project', path: '/project', sectionId: 'project' },
+    { label: 'Contact', path: '/contact', sectionId: 'contact' },
   ];
 
+  const handleNavClick = (item) => {
+    setMobileOpen(false);
+    const element = document.getElementById(item.sectionId);
+    if (element && (location.pathname === '/' || location.pathname === '/main')) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      navigate(item.path);
+    }
+  };
+
   const drawer = (
-    <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center', backgroundColor: '#fafafa', height: '100%' }}>
-      <Typography variant="h6" sx={{ my: 2, fontWeight: 'bold' }}>
+    <Box
+      onClick={handleDrawerToggle}
+      sx={{ textAlign: 'center', backgroundColor: '#fafafa', height: '100%', pt: 2 }}
+    >
+      <Typography variant="h6" sx={{ my: 2, fontWeight: 500 }}>
         Kasidit Somphot
       </Typography>
       <List>
         {navItems.map((item) => (
-          <ListItem key={item.label} component={Link} to={item.path} sx={{ color: 'black', textDecoration: 'none' }}>
-            <ListItemText primary={item.label} />
+          <ListItem key={item.label} disablePadding>
+            <ListItemButton
+              onClick={() => handleNavClick(item)}
+              sx={{ textAlign: 'center', py: 1.5 }}
+            >
+              <ListItemText
+                primary={item.label}
+                primaryTypographyProps={{ fontWeight: 500, fontSize: '1.05rem' }}
+              />
+            </ListItemButton>
           </ListItem>
         ))}
       </List>
@@ -35,26 +69,46 @@ function A() {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="fixed" sx={{ backgroundColor: 'black', boxShadow: 3, zIndex: 1100 }}>
-        <Toolbar>
-          <Typography variant="h4" component="div" sx={{ flexGrow: 1, color: 'white', fontSize: { xs: '1.5rem', md: '2.125rem' } }}>
+      <AppBar
+        position="fixed"
+        sx={{
+          backgroundColor: 'rgba(0, 0, 0, 0.92)',
+          backdropFilter: 'blur(8px)',
+          boxShadow: '0 2px 10px rgba(0,0,0,0.15)',
+          zIndex: 1100,
+        }}
+      >
+        <Toolbar sx={{ maxWidth: '1200px', width: '100%', mx: 'auto', px: { xs: 2, md: 3 } }}>
+          <Typography
+            variant="h4"
+            component="div"
+            onClick={() => handleNavClick(navItems[0])}
+            sx={{
+              flexGrow: 1,
+              color: 'white',
+              cursor: 'pointer',
+              fontWeight: 500,
+              fontSize: { xs: '1.4rem', sm: '1.75rem', md: '2rem' },
+            }}
+          >
             Kasidit Somphot
           </Typography>
 
           {/* Desktop Menu */}
-          <Box sx={{ display: { xs: 'none', md: 'block' } }}>
+          <Box sx={{ display: { xs: 'none', md: 'flex' }, alignItems: 'center' }}>
             {navItems.map((item) => (
               <Typography
                 key={item.label}
                 variant="h6"
-                component={Link}
-                to={item.path}
+                onClick={() => handleNavClick(item)}
                 sx={{
-                  ml: 3,
-                  fontWeight: 300,
+                  ml: 3.5,
+                  fontWeight: 400,
+                  fontSize: '1.05rem',
                   color: 'white',
-                  textDecoration: 'none',
-                  '&:hover': { color: '#ff6f00', textDecoration: 'underline' }
+                  cursor: 'pointer',
+                  transition: 'color 0.2s ease',
+                  '&:hover': { color: '#ff9800' },
                 }}
               >
                 {item.label}
@@ -83,11 +137,11 @@ function A() {
           open={mobileOpen}
           onClose={handleDrawerToggle}
           ModalProps={{
-            keepMounted: true, // Better open performance on mobile.
+            keepMounted: true, // Better performance on mobile
           }}
           sx={{
             display: { xs: 'block', md: 'none' },
-            '& .MuiDrawer-paper': { boxSizing: 'border-box', width: 240 },
+            '& .MuiDrawer-paper': { boxSizing: 'border-box', width: 250 },
           }}
         >
           {drawer}

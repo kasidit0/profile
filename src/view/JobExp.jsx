@@ -6,13 +6,17 @@ import {
     Card,
     Chip,
     Stack,
-    Button
+    Button,
+    Dialog,
+    DialogContent,
+    Fade
 } from '@mui/material';
+import CloseIcon from '@mui/icons-material/Close';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-// import WorkOutlineIcon from '@mui/icons-material/WorkOutline';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
-// import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
+import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
+import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 import A from './A';
 
 // ข้อมูลประสบการณ์การทำงานและบริษัทที่เคยร่วมงาน
@@ -40,7 +44,7 @@ const experiences = [
         period: 'part-time',
         location: 'Bangkok, Thailand',
         logo: '/png/BeyondGodlike-Photoroom.png',
-        tags: ['IT Support', 'Hardware', 'Troubleshooting', 'Install Program', 'PC Setup', 'Network'],
+        tags: ['IT Support', 'Hardware', 'Problem analysis', 'Install Program', 'PC Setup', 'Network'],
         description:
             'ดูแล และติดตั้งระบบคอมพิวเตอร์ อุปกรณ์ IT ในการจัดงานอีเวนท์ พร้อมทั้งแก้ไขปัญหาที่เกิดขึ้นระหว่างดำเนินการ',
         details: [
@@ -57,7 +61,7 @@ const experiences = [
         period: '3 months',
         location: 'Bangkok, Thailand',
         logo: '/png/100pro.png',
-        tags: ['Troubleshooting', 'Remote Assistance', 'Maintenance'],
+        tags: ['Problem analysis', 'Remote Assistance', 'Maintenance'],
         description:
             'รีโมท และเข้าไปที่หน้างาน เพื่อแก้ไขปัญหาของหุ่นยนต์ให้กับลูกค้า เช่น แก้ไขตั้งค่าการทำงานของหุ่นยนต์ ตรวจสอบปัญหาจากสภาพแวดล้อม',
         details: [
@@ -88,19 +92,21 @@ const experiences = [
 function JobExp() {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [isPaused, setIsPaused] = useState(false);
+    const [selectedExp, setSelectedExp] = useState(null);
+    const isModalOpen = Boolean(selectedExp);
     const touchStartX = useRef(0);
     const touchEndX = useRef(0);
 
-    // Auto-play carousel ทุกๆ 6 วินาที (หยุดเมื่อ hover)
+    // Auto-play carousel ทุกๆ 6 วินาที (หยุดเมื่อ hover หรือเปิด popup)
     useEffect(() => {
-        if (isPaused) return;
+        if (isPaused || isModalOpen) return;
 
         const timer = setInterval(() => {
             setCurrentIndex((prev) => (prev + 1) % experiences.length);
         }, 6000);
 
         return () => clearInterval(timer);
-    }, [isPaused]);
+    }, [isPaused, isModalOpen]);
 
     const handlePrev = () => {
         setCurrentIndex((prev) => (prev === 0 ? experiences.length - 1 : prev - 1));
@@ -132,43 +138,42 @@ function JobExp() {
             {/* Top Navbar is now in Main.jsx */}
             {/* <A /> */}
 
-            <Box sx={{ backgroundColor: '#fafafa', minHeight: '100vh', width: '100%' }}>
+            <Box sx={{ backgroundColor: '#fafafa', minHeight: '100vh', width: '100%', py: { xs: 8, md: 12 } }}>
                 <Box
                     sx={{
-                        width: "80%",
-                        mt: "120px",
-                        ml: "10%",
-                        display: "flex",
-                        flexDirection: "column",
-                        padding: "20px",
+                        width: { xs: '92%', sm: '88%', md: '80%' },
+                        maxWidth: '1200px',
+                        mx: 'auto',
+                        px: { xs: 1, sm: 2 },
+                        display: 'flex',
+                        flexDirection: 'column',
                     }}
                 >
                     {/* Section Header */}
                     <Box sx={{ mb: 4 }}>
                         <Typography
-                            variant="h1"
+                            variant="h2"
                             align="left"
                             sx={{
-                                width: "100%",
+                                fontSize: { xs: '2rem', sm: '2.5rem', md: '3.2rem' },
+                                fontWeight: 400,
                                 color: 'black'
                             }}
                         >
                             Job Experience
                         </Typography>
-                        <hr />
-                        <br />
+                        <Box sx={{ width: '100%', height: '1px', backgroundColor: '#ccc', mt: 1.5, mb: 3 }} />
                     </Box>
 
-                    {/* Company Quick-Selector Pills */}
-                    <Stack
-                        direction="row"
-                        spacing={1.5}
+                    {/* Company Quick-Selector Pills (2 buttons per row on mobile, flex on desktop) */}
+                    <Box
                         sx={{
+                            display: { xs: 'grid', md: 'flex' },
+                            gridTemplateColumns: { xs: 'repeat(2, 1fr)', sm: 'repeat(2, 1fr)' },
+                            flexDirection: 'row',
+                            flexWrap: 'wrap',
+                            gap: { xs: 1.25, sm: 1.5 },
                             mb: 4,
-                            overflowX: 'auto',
-                            pb: 1,
-                            '&::-webkit-scrollbar': { height: '4px' },
-                            '&::-webkit-scrollbar-thumb': { backgroundColor: '#ddd', borderRadius: '4px' }
                         }}
                     >
                         {experiences.map((item, index) => (
@@ -178,12 +183,16 @@ function JobExp() {
                                 variant={currentIndex === index ? 'contained' : 'outlined'}
                                 sx={{
                                     borderRadius: '50px',
-                                    px: 2.5,
-                                    py: 1,
+                                    px: { xs: 1.5, sm: 2.5 },
+                                    py: { xs: 1, sm: 1 },
+                                    minHeight: { xs: '44px', sm: '40px' },
                                     textTransform: 'none',
-                                    fontSize: '0.9rem',
+                                    fontSize: { xs: '0.82rem', sm: '0.88rem', md: '0.9rem' },
                                     fontWeight: 500,
-                                    whiteSpace: 'nowrap',
+                                    whiteSpace: { xs: 'normal', md: 'nowrap' },
+                                    lineHeight: 1.25,
+                                    textAlign: 'center',
+                                    width: { xs: '100%', md: 'auto' },
                                     borderColor: 'black',
                                     backgroundColor: currentIndex === index ? 'black' : 'transparent',
                                     color: currentIndex === index ? 'white' : 'black',
@@ -197,7 +206,7 @@ function JobExp() {
                                 {item.company}
                             </Button>
                         ))}
-                    </Stack>
+                    </Box>
 
                     {/* Carousel Wrapper */}
                     <Box
@@ -237,14 +246,21 @@ function JobExp() {
                                     >
                                         {/* Horizontal Card Layout */}
                                         <Card
+                                            onClick={() => setSelectedExp(exp)}
                                             sx={{
                                                 display: 'flex',
                                                 flexDirection: { xs: 'column', md: 'row' },
                                                 backgroundColor: 'white',
                                                 borderRadius: '24px',
                                                 border: '1px solid #e9ecef',
-                                                minHeight: { md: '460px' },
-                                                overflow: 'hidden'
+                                                minHeight: { md: '600px' },
+                                                overflow: 'hidden',
+                                                cursor: 'pointer',
+                                                transition: 'all 0.3s ease',
+                                                '&:hover': {
+                                                    boxShadow: '0 12px 35px rgba(0, 0, 0, 0.12)',
+                                                    borderColor: '#bbb'
+                                                }
                                             }}
                                         >
                                             {/* Left: Company Logo Section */}
@@ -342,7 +358,7 @@ function JobExp() {
                                                         variant="h4"
                                                         align="left"
                                                         sx={{
-                                                            fontWeight: 600,
+                                                            fontWeight: 400,
                                                             color: '#111',
                                                             mb: 2
                                                         }}
@@ -417,6 +433,36 @@ function JobExp() {
                                                             />
                                                         ))}
                                                     </Stack>
+
+                                                    {/* View Details Button */}
+                                                    <Box sx={{ mt: 2.5, display: 'flex', justifyContent: { xs: 'stretch', sm: 'flex-end' } }}>
+                                                        <Button
+                                                            variant="contained"
+                                                            size="small"
+                                                            endIcon={<OpenInNewIcon sx={{ fontSize: 16 }} />}
+                                                            onClick={(e) => {
+                                                                e.stopPropagation();
+                                                                setSelectedExp(exp);
+                                                            }}
+                                                            sx={{
+                                                                borderRadius: '50px',
+                                                                backgroundColor: 'black',
+                                                                color: 'white',
+                                                                px: 2.5,
+                                                                py: 0.8,
+                                                                fontSize: '0.85rem',
+                                                                fontWeight: 500,
+                                                                textTransform: 'none',
+                                                                width: { xs: '100%', sm: 'auto' },
+                                                                boxShadow: '0 4px 12px rgba(0,0,0,0.15)',
+                                                                '&:hover': {
+                                                                    backgroundColor: '#222'
+                                                                }
+                                                            }}
+                                                        >
+                                                            กดเพื่อดูรายละเอียด
+                                                        </Button>
+                                                    </Box>
                                                 </Box>
                                             </Box>
                                         </Card>
@@ -510,6 +556,191 @@ function JobExp() {
                     >
                         {currentIndex + 1} / {experiences.length}
                     </Typography>
+
+                    {/* Job Experience Detail Modal / Popup */}
+                    <Dialog
+                        open={isModalOpen}
+                        onClose={() => setSelectedExp(null)}
+                        maxWidth="md"
+                        fullWidth
+                        TransitionComponent={Fade}
+                        PaperProps={{
+                            sx: {
+                                borderRadius: '24px',
+                                p: { xs: 2.5, sm: 4 },
+                                position: 'relative',
+                                maxHeight: '90vh',
+                                boxShadow: '0 20px 60px rgba(0, 0, 0, 0.25)',
+                                border: '1px solid #e9ecef',
+                            }
+                        }}
+                    >
+                        {selectedExp && (
+                            <DialogContent sx={{ p: 0 }}>
+                                {/* Close Button */}
+                                <IconButton
+                                    onClick={() => setSelectedExp(null)}
+                                    aria-label="Close"
+                                    sx={{
+                                        position: 'absolute',
+                                        top: { xs: 12, sm: 20 },
+                                        right: { xs: 12, sm: 20 },
+                                        backgroundColor: '#f5f5f5',
+                                        color: 'black',
+                                        zIndex: 2,
+                                        '&:hover': {
+                                            backgroundColor: 'black',
+                                            color: 'white',
+                                        }
+                                    }}
+                                >
+                                    <CloseIcon />
+                                </IconButton>
+
+                                {/* Header: Logo & Company info */}
+                                <Box
+                                    sx={{
+                                        display: 'flex',
+                                        flexDirection: { xs: 'column', sm: 'row' },
+                                        alignItems: { xs: 'flex-start', sm: 'center' },
+                                        gap: 3,
+                                        mb: 3,
+                                        pr: { xs: 5, sm: 6 }
+                                    }}
+                                >
+                                    <Box
+                                        component="img"
+                                        src={selectedExp.logo}
+                                        alt={selectedExp.company}
+                                        sx={{
+                                            width: { xs: '80px', sm: '100px' },
+                                            height: { xs: '80px', sm: '100px' },
+                                            objectFit: 'contain',
+                                            backgroundColor: '#f8f9fa',
+                                            p: 1.5,
+                                            borderRadius: '16px',
+                                            border: '1px solid #eee'
+                                        }}
+                                    />
+                                    <Box>
+                                        <Typography
+                                            variant="h5"
+                                            sx={{
+                                                fontWeight: 600,
+                                                color: '#111',
+                                                mb: 0.5,
+                                                fontSize: { xs: '1.35rem', sm: '1.65rem' }
+                                            }}
+                                        >
+                                            {selectedExp.company}
+                                        </Typography>
+                                        <Typography
+                                            variant="subtitle1"
+                                            sx={{
+                                                color: '#555',
+                                                fontWeight: 500,
+                                                fontSize: { xs: '1rem', sm: '1.1rem' },
+                                                mb: 1
+                                            }}
+                                        >
+                                            {selectedExp.role}
+                                        </Typography>
+                                        <Stack direction="row" spacing={1} flexWrap="wrap" gap={1}>
+                                            <Chip
+                                                icon={<CalendarMonthIcon sx={{ fontSize: 16 }} />}
+                                                label={selectedExp.period}
+                                                size="small"
+                                                sx={{ backgroundColor: '#f0f0f0', fontWeight: 500 }}
+                                            />
+                                            <Chip
+                                                icon={<LocationOnOutlinedIcon sx={{ fontSize: 16 }} />}
+                                                label={selectedExp.location}
+                                                size="small"
+                                                sx={{ backgroundColor: '#f0f0f0', fontWeight: 500 }}
+                                            />
+                                        </Stack>
+                                    </Box>
+                                </Box>
+
+                                <Box sx={{ width: '100%', height: '1px', backgroundColor: '#eee', my: 2.5 }} />
+
+                                {/* Description */}
+                                <Typography
+                                    variant="body1"
+                                    sx={{
+                                        color: '#333',
+                                        fontSize: '1rem',
+                                        lineHeight: 1.85,
+                                        mb: 3
+                                    }}
+                                >
+                                    {selectedExp.description}
+                                </Typography>
+
+                                {/* Responsibilities Details */}
+                                <Typography
+                                    variant="subtitle2"
+                                    sx={{
+                                        fontWeight: 600,
+                                        color: '#111',
+                                        fontSize: '1rem',
+                                        mb: 1.5
+                                    }}
+                                >
+                                    หน้าที่และความรับผิดชอบ:
+                                </Typography>
+                                <Box component="ul" sx={{ pl: 2.5, m: 0, mb: 3.5 }}>
+                                    {selectedExp.details.map((detail, dIdx) => (
+                                        <Box
+                                            component="li"
+                                            key={dIdx}
+                                            sx={{
+                                                color: '#444',
+                                                fontSize: '0.95rem',
+                                                lineHeight: 1.8,
+                                                mb: 1
+                                            }}
+                                        >
+                                            {detail}
+                                        </Box>
+                                    ))}
+                                </Box>
+
+                                {/* Technologies & Skills */}
+                                <Box sx={{ pt: 2, borderTop: '1px solid #f0f0f0' }}>
+                                    <Typography
+                                        variant="caption"
+                                        sx={{
+                                            display: 'block',
+                                            color: '#888',
+                                            fontWeight: 600,
+                                            letterSpacing: 1,
+                                            textTransform: 'uppercase',
+                                            mb: 1.5
+                                        }}
+                                    >
+                                        Technologies & Skills
+                                    </Typography>
+                                    <Stack direction="row" flexWrap="wrap" gap={1}>
+                                        {selectedExp.tags.map((tag, tIdx) => (
+                                            <Chip
+                                                key={tIdx}
+                                                label={tag}
+                                                size="small"
+                                                sx={{
+                                                    border: '1px solid #ddd',
+                                                    backgroundColor: 'white',
+                                                    color: '#333',
+                                                    fontWeight: 500,
+                                                    fontSize: '0.85rem'
+                                                }}
+                                            />
+                                        ))}
+                                    </Stack>
+                                </Box>
+                            </DialogContent>
+                        )}
+                    </Dialog>
                 </Box>
             </Box>
         </>
