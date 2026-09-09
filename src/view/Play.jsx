@@ -31,7 +31,7 @@ function Play() {
               flexDirection: "column",
               justifyContent: "space-between",
               padding: "20px",
-              
+
             }}
           >
             <Typography variant="h1" align="left" sx={{
@@ -41,7 +41,7 @@ function Play() {
               Let's Connect
             </Typography>
 
-            <Typography sx={{ ml: 2,mt:2 }}>
+            <Typography sx={{ ml: 2, mt: 2 }}>
               Say Hello at KasiditSomphot@gmail.com <br />
               for moor information, here's my resume
             </Typography>
@@ -63,7 +63,7 @@ function Play() {
                   color: 'white',
                   width: '50px',
                   height: '50px',
-                  borderRadius: '50px',display: 'flex', justifyContent: 'center'
+                  borderRadius: '50px', display: 'flex', justifyContent: 'center'
                 }}
               >
                 <GitHubIcon />
@@ -81,7 +81,7 @@ function Play() {
                   color: 'white',
                   width: '50px',
                   height: '50px',
-                  borderRadius: '50px',display: 'flex', justifyContent: 'center'
+                  borderRadius: '50px', display: 'flex', justifyContent: 'center'
                 }}
               >
                 <LinkedInIcon />
@@ -99,7 +99,7 @@ function Play() {
                   color: 'white',
                   width: '50px',
                   height: '50px',
-                  borderRadius: '50px',display: 'flex', justifyContent: 'center'
+                  borderRadius: '50px', display: 'flex', justifyContent: 'center'
                 }}
               >
                 <FacebookOutlinedIcon />
@@ -117,14 +117,14 @@ function Play() {
                   color: 'white',
                   width: '50px',
                   height: '50px',
-                  borderRadius: '50px',display: 'flex', justifyContent: 'center'
+                  borderRadius: '50px', display: 'flex', justifyContent: 'center'
                 }}
               >
                 <InstagramIcon />
               </IconButton>
             </Box>
 
-           
+
 
           </Box>
 
@@ -134,18 +134,18 @@ function Play() {
 
         {/* 2*/}
         <Grid size={8} sx={{}}>
-        <Box
+          <Box
             sx={{
               ml: '10%',
               mt: '120px',
-             
+
               color: 'white',
               padding: '40px',
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'flex-start',
               gap: 3,
-              
+
             }}
           >
             <Box sx={{ backgroundColor: 'black', padding: '20px', borderRadius: '20px' }}>

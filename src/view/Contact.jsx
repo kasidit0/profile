@@ -17,15 +17,16 @@ function Contact() {
 
       {/* 1 */}
       <Grid container spacing={0} columns={16}>
-        <Grid size={8} sx={{}}>
+        <Grid size={{ xs: 16, md: 8 }} sx={{}}>
           <Box
             sx={{
-              width: "80%",
-              mt: "120px",
-              ml: "20%",
+              width: { xs: "100%", md: "80%" },
+              // mt: "120px",
+              mx: { xs: 'auto', md: "20%" },
               display: "flex",
               flexDirection: "column",
-              justifyContent: "space-between",
+              justifyContent: "center",
+              alignItems: { xs: 'center', md: 'flex-start' },
               padding: "20px",
 
             }}
@@ -37,16 +38,17 @@ function Contact() {
               Let's Connect
             </Typography>
 
-            <Typography sx={{ ml: 2, mt: 2 }}>
-              Say Hello at KasiditSomphot@gmail.com <br />
-              for moor information, here's my resume
+            <Typography sx={{ ml: 2, mt: 2, textAlign: 'left' }}>
+              Say Hello at KasiditSomphot@gmail.com
+              {/* <br />
+              for moor information, here's my resume */}
             </Typography>
 
 
 
 
             {/* btn */}
-            <Box sx={{ display: 'flex', justifyContent: 'flex-start', mt: 1, ml: 1 }}>
+            <Box sx={{ display: 'flex', justifyContent: { xs: 'center', md: 'flex-start' }, flexWrap: 'wrap', mt: 2, ml: { xs: 0, md: 1 } }}>
               {/* github */}
               <IconButton
                 component="a"
@@ -129,7 +131,7 @@ function Contact() {
 
 
         {/* 2*/}
-        <Grid size={8} sx={{}}>
+        <Grid size={{ xs: 16, md: 8 }} sx={{}}>
           <Box
             sx={{
               ml: '10%',
@@ -144,7 +146,7 @@ function Contact() {
 
             }}
           >
-            <Box sx={{ backgroundColor: 'black', padding: '20px', borderRadius: '20px' }}>
+            {/* <Box sx={{ backgroundColor: 'black', padding: '20px', borderRadius: '20px' }}>
               <Typography >Name</Typography>
               <TextField sx={{ width: '600px', backgroundColor: 'white', mb: 2, borderRadius: '5px' }} id="Name" />
 
@@ -164,7 +166,7 @@ function Contact() {
 
 
             </Box>
-
+ */}
 
           </Box>
         </Grid>

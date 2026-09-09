@@ -129,21 +129,20 @@ function JobExp() {
 
     return (
         <>
-            {/* Top Navbar */}
-            <A />
+            {/* Top Navbar is now in Main.jsx */}
+            {/* <A /> */}
 
-            <Box
-                sx={{
-                    minHeight: '100vh',
-                    width: '100%',
-                    backgroundColor: '#fafafa',
-                    pt: '120px',
-                    pb: '80px',
-                    px: { xs: 2, sm: 4, md: 8 },
-                    boxSizing: 'border-box'
-                }}
-            >
-                <Box sx={{ maxWidth: '80%', mx: 'auto' }}>
+            <Box sx={{ backgroundColor: '#fafafa', minHeight: '100vh', width: '100%' }}>
+                <Box
+                    sx={{
+                        width: "80%",
+                        mt: "120px",
+                        ml: "10%",
+                        display: "flex",
+                        flexDirection: "column",
+                        padding: "20px",
+                    }}
+                >
                     {/* Section Header */}
                     <Box sx={{ mb: 4 }}>
                         <Typography

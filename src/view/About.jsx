@@ -106,9 +106,9 @@ function About() {
         <Grid container spacing={0} columns={16}>
           {/* A */}
           <Grid size={6} sx={{}}>
-            <Typography variant="h1" align="right" sx={{ width: "100%" }}>
-              My Capablities
-
+            <Typography variant="h1" align="left" sx={{ width: "100%" }}>
+              Programming <br />
+              Language
             </Typography>
 
 
@@ -120,7 +120,7 @@ function About() {
           <Grid size={10} sx={{}}>
 
             {/* Box1 */}
-            <Box sx={{ display: 'flex', gap: 2, mt: '50px', mr: '25%', justifyContent: 'end' }}>
+            <Box sx={{ display: 'flex', gap: 2, mt: '50px', mr: '25%', ml: '35%', justifyContent: 'start' }}>
               <Typography variant="body1" align="center"
                 sx={{
                   color: 'black', width: '100px', height: '50px',
@@ -151,7 +151,7 @@ function About() {
             </Box>
 
             {/* Box2 */}
-            <Box sx={{ display: 'flex', gap: 2, mt: '30px', mr: '25%', justifyContent: 'end' }}>
+            <Box sx={{ display: 'flex', gap: 2, mt: '30px', mr: '25%', ml: '35%', justifyContent: 'start' }}>
               <Typography variant="body1" align="right"
                 sx={{
                   color: 'black', width: '100px', height: '50px',

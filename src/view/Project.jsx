@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import {
     Box,
     Typography,
@@ -29,11 +29,57 @@ import TuneIcon from '@mui/icons-material/Tune';
 import AssignmentIcon from '@mui/icons-material/Assignment';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import A from './A';
+
+// ข้อมูลรูปภาพสำหรับ Popup Slide
+const projectSlides = [
+    {
+        id: 1,
+        title: 'ภาพรวมโปรเจกต์ (Project Overview)',
+        description: 'ภาพรวมอุปกรณ์สวมใส่ตรวจจับการล้มและระบบการทำงานของเซนเซอร์',
+        src: '/project.jpg'
+    },
+    {
+        id: 2,
+        title: 'Use Case Diagram',
+        description: 'แผนผัง Use Case แสดงบทบาทผู้ใช้งาน และการทำงานของระบบ',
+        src: '/usecase_diagram.PNG'
+    }
+];
 
 function Project() {
     const [openImageModal, setOpenImageModal] = useState(false);
+    const [currentSlide, setCurrentSlide] = useState(0);
     const [activeTab, setActiveTab] = useState(0);
+    const touchStartX = useRef(0);
+    const touchEndX = useRef(0);
+
+    const handlePrevSlide = () => {
+        setCurrentSlide((prev) => (prev === 0 ? projectSlides.length - 1 : prev - 1));
+    };
+
+    const handleNextSlide = () => {
+        setCurrentSlide((prev) => (prev + 1) % projectSlides.length);
+    };
+
+    const handleTouchStart = (e) => {
+        touchStartX.current = e.touches[0].clientX;
+    };
+
+    const handleTouchMove = (e) => {
+        touchEndX.current = e.touches[0].clientX;
+    };
+
+    const handleTouchEnd = () => {
+        const diff = touchStartX.current - touchEndX.current;
+        if (diff > 50) {
+            handleNextSlide();
+        } else if (diff < -50) {
+            handlePrevSlide();
+        }
+    };
 
     const handleTabChange = (event, newValue) => {
         setActiveTab(newValue);
@@ -41,21 +87,19 @@ function Project() {
 
     return (
         <>
-            {/* Top Navigation Bar */}
-            <A />
+            {/* Top Navigation Bar is now in Main.jsx */}
 
             <Box
                 sx={{
-                    minHeight: '100vh',
-                    width: '100%',
-                    backgroundColor: '#fafafa',
-                    pt: '120px',
-                    pb: '80px',
-                    px: { xs: 2, sm: 4, md: 8 },
-                    boxSizing: 'border-box'
+                    width: "80%",
+                    mt: "120px",
+                    ml: "10%",
+                    display: "flex",
+                    flexDirection: "column",
+                    padding: "20px",
                 }}
             >
-                <Box sx={{ maxWidth: '85%', mx: 'auto' }}>
+                <Box sx={{ width: '100%' }}>
                     {/* Header Section */}
                     <Box sx={{ mb: 4 }}>
                         <Typography
@@ -72,8 +116,8 @@ function Project() {
                         <br />
                     </Box>
 
-                    {/* Centered Image */}
-                    <Box sx={{ display: 'flex', justifyContent: 'center', mb: 4 }}>
+                    {/* Centered Image with View More Button */}
+                    <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', mb: 5 }}>
                         <Box
                             component="img"
                             src="/project.jpg"
@@ -84,46 +128,56 @@ function Project() {
                                 height: 'auto',
                                 borderRadius: '25px',
                                 objectFit: 'cover',
-                                boxShadow: '0px 10px 30px rgba(0,0,0,0.1)'
+                                boxShadow: '0px 10px 30px rgba(0,0,0,0.1)',
+                                cursor: 'pointer',
+                                transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+                                '&:hover': {
+                                    transform: 'scale(1.01)',
+                                    boxShadow: '0px 15px 35px rgba(0,0,0,0.15)'
+                                }
+                            }}
+                            onClick={() => {
+                                setCurrentSlide(0);
+                                setOpenImageModal(true);
                             }}
                         />
+
+                        {/* ปุ่มดูข้อมูลเพิ่มเติม ใต้รูป project.jpg */}
+                        <Box sx={{ width: '100%', maxWidth: '900px', display: 'flex', justifyContent: 'flex-end' }}>
+                            <Button
+                                variant="contained"
+                                onClick={() => {
+                                    setCurrentSlide(0);
+                                    setOpenImageModal(true);
+                                }}
+                                startIcon={<ZoomInIcon />}
+                                sx={{
+                                    mt: 2.5,
+                                    backgroundColor: 'black',
+                                    color: 'white',
+                                    borderRadius: '50px',
+                                    px: 3.5,
+                                    py: 1.2,
+                                    textTransform: 'none',
+                                    fontSize: '0.95rem',
+                                    fontWeight: 500,
+                                    boxShadow: '0 4px 15px rgba(0,0,0,0.15)',
+                                    '&:hover': {
+                                        backgroundColor: '#222',
+                                        transform: 'translateY(-2px)',
+                                        boxShadow: '0 6px 20px rgba(0,0,0,0.2)'
+                                    },
+                                    transition: 'all 0.25s ease'
+                                }}
+                            >
+                                ดูข้อมูลเพิ่มเติม
+                            </Button>
+                        </Box>
                     </Box>
 
                     {/* Project Details & Information (อยู่ใต้รูป) */}
                     <Box sx={{ maxWidth: '900px', mx: 'auto', mb: 8, textAlign: 'center' }}>
-                        {/* Category & Status Chips
-                        <Stack direction="row" spacing={1} flexWrap="wrap" justifyContent="center" gap={1} sx={{ mb: 3 }}>
-                            <Chip
-                                icon={<EngineeringIcon sx={{ fontSize: 16 }} />}
-                                label="Computer Engineering"
-                                size="small"
-                                sx={{
-                                    backgroundColor: '#f0f4f8',
-                                    color: '#0d47a1',
-                                    fontWeight: 500
-                                }}
-                            />
-                            <Chip
-                                icon={<SensorsIcon sx={{ fontSize: 16 }} />}
-                                label="IoT & Wearable Sensors"
-                                size="small"
-                                sx={{
-                                    backgroundColor: '#fff3e0',
-                                    color: '#e65100',
-                                    fontWeight: 500
-                                }}
-                            />
-                            <Chip
-                                icon={<CheckCircleOutlineIcon sx={{ fontSize: 16 }} />}
-                                label="Project Completed"
-                                size="small"
-                                sx={{
-                                    backgroundColor: '#e8f5e9',
-                                    color: '#2e7d32',
-                                    fontWeight: 500
-                                }}
-                            />
-                        </Stack> */}
+
 
                         {/* Project Title */}
                         <Typography
@@ -159,122 +213,18 @@ function Project() {
                             เพื่อช่วยคัดกรองท่าทางในชีวิตประจำวันทั่วไปออกและยืนยันการหกล้มได้อย่างแม่นยำโดยไม่แจ้งเตือนผิดพลาด และส่งแจ้งเตือนไปยังผู้ดูแล
                         </Typography>
 
-                        {/* Quick Meta Details (4 columns on desktop)
-                        <Paper
-                            variant="outlined"
-                            sx={{
-                                p: 3,
-                                borderRadius: '16px',
-                                backgroundColor: '#fbfbfb',
-                                borderColor: '#eee',
-                                mb: 5,
-                                textAlign: 'left'
-                            }}
-                        >
-                            <Grid container spacing={3}>
-                                <Grid size={{ xs: 12, sm: 6, md: 3 }}>
-                                    <Typography variant="caption" sx={{ color: '#888', textTransform: 'uppercase', fontWeight: 600 }}>
-                                        หน้าที่รับผิดชอบ
-                                    </Typography>
-                                    <Typography variant="body1" sx={{ fontWeight: 600, color: '#222', mt: 0.5 }}>
-                                        จัดทำเอกสารโครงการ
-                                    </Typography>
-                                    <Typography variant="caption" sx={{ color: '#666' }}>
-                                        Southeast Asia University
-                                    </Typography>
-                                </Grid>
 
-                                <Grid size={{ xs: 12, sm: 6, md: 3 }}>
-                                    <Typography variant="caption" sx={{ color: '#888', textTransform: 'uppercase', fontWeight: 600 }}>
-                                        ผู้พัฒนาโครงงาน
-                                    </Typography>
-                                    <Typography variant="body1" sx={{ fontWeight: 600, color: '#222', mt: 0.5 }}>
-                                        นาย กษิดิศ สมพจน์
-                                    </Typography>
-                                    <Typography variant="caption" sx={{ color: '#666' }}>
-                                        Kasidit Somphot
-                                    </Typography>
-                                </Grid>
-
-                                <Grid size={{ xs: 12, sm: 6, md: 3 }}>
-                                    <Typography variant="caption" sx={{ color: '#888', textTransform: 'uppercase', fontWeight: 600 }}>
-                                        บทบาทและความรับผิดชอบ
-                                    </Typography>
-                                    <Typography variant="body1" sx={{ fontWeight: 500, color: '#222', mt: 0.5 }}>
-                                        Hardware Design, Sensor Wiring, Firmware & Testing
-                                    </Typography>
-                                </Grid>
-
-                                <Grid size={{ xs: 12, sm: 6, md: 3 }}>
-                                    <Typography variant="caption" sx={{ color: '#888', textTransform: 'uppercase', fontWeight: 600 }}>
-                                        ความเชี่ยวชาญหลัก
-                                    </Typography>
-                                    <Typography variant="body1" sx={{ fontWeight: 500, color: '#222', mt: 0.5 }}>
-                                        Microcontroller, IoT, C/C++, Data Analysis
-                                    </Typography>
-                                </Grid>
-                            </Grid>
-                        </Paper> */}
 
 
                     </Box>
 
-                    {/* Navigation & Footer CTA
-                    <Box
-                        sx={{
-                            display: 'flex',
-                            flexDirection: { xs: 'column', sm: 'row' },
-                            justifyContent: 'space-between',
-                            alignItems: 'center',
-                            gap: 2,
-                            pt: 3,
-                            borderTop: '1px solid #eee'
-                        }}
-                    >
-                        <Button
-                            component={Link}
-                            to="/jobexp"
-                            startIcon={<ArrowBackIcon />}
-                            sx={{
-                                borderRadius: '50px',
-                                color: '#333',
-                                px: 3,
-                                py: 1,
-                                textTransform: 'none',
-                                fontWeight: 500,
-                                '&:hover': {
-                                    backgroundColor: '#eee'
-                                }
-                            }}
-                        >
-                            หน้าก่อนหน้า: Job Experience
-                        </Button>
 
-                        <Button
-                            component={Link}
-                            to="/contact"
-                            variant="contained"
-                            endIcon={<ArrowForwardIcon />}
-                            sx={{
-                                backgroundColor: 'black',
-                                color: 'white',
-                                borderRadius: '50px',
-                                px: 4,
-                                py: 1.3,
-                                textTransform: 'none',
-                                fontWeight: 500,
-                                '&:hover': {
-                                    backgroundColor: '#333'
-                                }
-                            }}
-                        >
-                            ติดต่อสอบถาม (Contact Me)
-                        </Button>
-                    </Box> */}
+                    <hr />
                 </Box>
+
             </Box>
 
-            {/* Full-Screen Image Lightbox Modal */}
+            {/* Full-Screen Image Lightbox Modal with Slide */}
             <Dialog
                 open={openImageModal}
                 onClose={() => setOpenImageModal(false)}
@@ -283,15 +233,186 @@ function Project() {
                 TransitionComponent={Fade}
                 PaperProps={{
                     sx: {
-                        backgroundColor: '#0a0a0c',
-                        borderRadius: '20px',
+                        backgroundColor: '#121214',
+                        color: 'white',
+                        borderRadius: '24px',
                         overflow: 'hidden',
-                        boxShadow: '0 25px 50px rgba(0,0,0,0.8)'
+                        boxShadow: '0 25px 60px rgba(0,0,0,0.8)',
+                        p: { xs: 2, sm: 3 },
+                        position: 'relative'
                     }
                 }}
             >
+                {/* Header: Title & Close Button */}
+                <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 2, px: 1 }}>
+                    <Box>
+                        <Typography variant="h6" sx={{ fontWeight: 600, color: 'white', fontSize: { xs: '1rem', sm: '1.2rem' } }}>
+                            {projectSlides[currentSlide].title}
+                        </Typography>
+                        <Typography variant="caption" sx={{ color: '#888' }}>
+                            รูปภาพ {currentSlide + 1} จาก {projectSlides.length}
+                        </Typography>
+                    </Box>
 
+                    <IconButton
+                        onClick={() => setOpenImageModal(false)}
+                        sx={{
+                            color: '#aaa',
+                            backgroundColor: 'rgba(255,255,255,0.08)',
+                            '&:hover': {
+                                color: 'white',
+                                backgroundColor: 'rgba(255,255,255,0.18)'
+                            }
+                        }}
+                    >
+                        <CloseIcon />
+                    </IconButton>
+                </Box>
 
+                {/* Slide Viewport */}
+                <Box
+                    sx={{
+                        position: 'relative',
+                        width: '100%',
+                        overflow: 'hidden',
+                        borderRadius: '16px',
+                        backgroundColor: '#0a0a0c',
+                        minHeight: { xs: '260px', sm: '420px', md: '480px' },
+                        display: 'flex',
+                        alignItems: 'center'
+                    }}
+                    onTouchStart={handleTouchStart}
+                    onTouchMove={handleTouchMove}
+                    onTouchEnd={handleTouchEnd}
+                >
+                    {/* Slides Track */}
+                    <Box
+                        sx={{
+                            display: 'flex',
+                            width: '100%',
+                            transition: 'transform 0.45s cubic-bezier(0.25, 1, 0.5, 1)',
+                            transform: `translateX(-${currentSlide * 100}%)`
+                        }}
+                    >
+                        {projectSlides.map((slide) => (
+                            <Box
+                                key={slide.id}
+                                sx={{
+                                    minWidth: '100%',
+                                    display: 'flex',
+                                    flexDirection: 'column',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    p: { xs: 1.5, sm: 2 },
+                                    boxSizing: 'border-box'
+                                }}
+                            >
+                                <Box
+                                    component="img"
+                                    src={slide.src}
+                                    alt={slide.title}
+                                    sx={{
+                                        maxWidth: '100%',
+                                        maxHeight: { xs: '45vh', md: '55vh' },
+                                        objectFit: 'contain',
+                                        borderRadius: '12px',
+                                        boxShadow: '0 8px 30px rgba(0,0,0,0.5)',
+                                        backgroundColor: '#ffffff'
+                                    }}
+                                />
+                                <Typography
+                                    variant="body2"
+                                    sx={{
+                                        color: '#bbb',
+                                        mt: 2,
+                                        textAlign: 'center',
+                                        px: 2,
+                                        fontSize: '0.9rem'
+                                    }}
+                                >
+                                    {slide.description}
+                                </Typography>
+                            </Box>
+                        ))}
+                    </Box>
+
+                    {/* Left & Right Slide Navigation Arrows */}
+                    <IconButton
+                        onClick={handlePrevSlide}
+                        aria-label="Previous Slide"
+                        sx={{
+                            position: 'absolute',
+                            left: 12,
+                            top: '50%',
+                            transform: 'translateY(-50%)',
+                            backgroundColor: 'rgba(0, 0, 0, 0.65)',
+                            color: 'white',
+                            border: '1px solid rgba(255,255,255,0.15)',
+                            '&:hover': {
+                                backgroundColor: 'rgba(0, 0, 0, 0.9)',
+                                transform: 'translateY(-50%) scale(1.08)'
+                            },
+                            zIndex: 2
+                        }}
+                    >
+                        <ArrowBackIosNewIcon sx={{ fontSize: 20 }} />
+                    </IconButton>
+
+                    <IconButton
+                        onClick={handleNextSlide}
+                        aria-label="Next Slide"
+                        sx={{
+                            position: 'absolute',
+                            right: 12,
+                            top: '50%',
+                            transform: 'translateY(-50%)',
+                            backgroundColor: 'rgba(0, 0, 0, 0.65)',
+                            color: 'white',
+                            border: '1px solid rgba(255,255,255,0.15)',
+                            '&:hover': {
+                                backgroundColor: 'rgba(0, 0, 0, 0.9)',
+                                transform: 'translateY(-50%) scale(1.08)'
+                            },
+                            zIndex: 2
+                        }}
+                    >
+                        <ArrowForwardIosIcon sx={{ fontSize: 20 }} />
+                    </IconButton>
+                </Box>
+
+                {/* Bottom Slide Indicators & Quick Selector */}
+                <Stack
+                    direction="row"
+                    spacing={1.5}
+                    justifyContent="center"
+                    alignItems="center"
+                    sx={{ mt: 2.5 }}
+                >
+                    {projectSlides.map((slide, index) => (
+                        <Button
+                            key={slide.id}
+                            onClick={() => setCurrentSlide(index)}
+                            variant={currentSlide === index ? 'contained' : 'outlined'}
+                            size="small"
+                            sx={{
+                                borderRadius: '30px',
+                                textTransform: 'none',
+                                fontSize: '0.82rem',
+                                px: 2,
+                                py: 0.5,
+                                borderColor: 'rgba(255,255,255,0.3)',
+                                color: currentSlide === index ? 'black' : '#ccc',
+                                backgroundColor: currentSlide === index ? 'white' : 'transparent',
+                                '&:hover': {
+                                    backgroundColor: currentSlide === index ? '#eee' : 'rgba(255,255,255,0.1)',
+                                    borderColor: 'white'
+                                }
+                            }}
+                        >
+                            {slide.title}
+                        </Button>
+                    ))}
+                </Stack>
             </Dialog>
 
 
