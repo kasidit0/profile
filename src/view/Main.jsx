@@ -4,6 +4,7 @@ import Home from './Home';
 import About from './About';
 import JobExp from './JobExp';
 import Contact from './Contact';
+import Project from './project';
 
 function Main() {
   return (
@@ -11,7 +12,9 @@ function Main() {
       <Home />
       <About />
       <JobExp />
+      <Project />
       <Contact />
+
     </Box>
   );
 }

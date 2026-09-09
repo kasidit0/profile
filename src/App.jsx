@@ -9,13 +9,14 @@ import About from './view/About'
 import Play from './view/Play'
 import Main from './view/Main'
 import JobExp from './view/JobExp'
+import Project from './view/Project'
 
 
 function App() {
   return (
-    
+
     <BrowserRouter>
-      <CssBaseline />  
+      <CssBaseline />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/main" element={<Main />} />
@@ -23,6 +24,7 @@ function App() {
         <Route path="/a" element={<A />} />
         <Route path="/about" element={<About />} />
         <Route path="/jobexp" element={<JobExp />} />
+        <Route path="/project" element={<Project />} />
         <Route path="/play" element={<Play />} />
 
       </Routes>

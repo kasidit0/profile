@@ -59,6 +59,21 @@ function A() {
           <Typography 
             variant="h6" 
             component={Link} 
+            to="/project" 
+            sx={{ 
+              mr: 3, 
+              fontWeight: 300, 
+              color: 'white', 
+              textDecoration: 'none', 
+              '&:hover': { color: '#ff6f00', textDecoration: 'underline' } 
+            }}
+          >
+            Project
+          </Typography>
+
+          <Typography 
+            variant="h6" 
+            component={Link} 
             to="/contact" 
             sx={{ 
               fontWeight: 300, 
